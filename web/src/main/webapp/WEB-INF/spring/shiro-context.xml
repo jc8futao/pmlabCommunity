@@ -146,7 +146,7 @@
                 <entry key="oauth2Authc" value-ref="oAuth2AuthenticationFilter"/>
                 <entry key="userAuthc" value-ref="userAuthenticationFilter"/>
                 <entry key="sysUser" value-ref="sysUserFilter"/>
-                <entry key="oauth2User" value-ref="sysUserFilter"/>
+                <entry key="oauth2User" value-ref="oauth2Filter"/>
             </util:map>
         </property>
         <property name="filterChainDefinitions">

@@ -11,8 +11,4 @@
 
     <!-- restful interface define -->
     <bean id="jsonProvider" class="org.codehaus.jackson.jaxrs.JacksonJsonProvider"/>
-
-    <bean id="providerList" class="java.util.ArrayList">
-        <!---->
-    </bean>
 </beans>

@@ -21,7 +21,9 @@ public class Permission {
     /**
      * 是否显示 也表示是否可用 为了统一 都使用这个
      */
-    private Boolean show = Boolean.FALSE;
+    private Boolean show = Boolean.TRUE;
+
+    private Boolean buildIn = Boolean.TRUE;
 
     public String getName() {
         return name;
@@ -53,5 +55,13 @@ public class Permission {
 
     public void setShow(Boolean show) {
         this.show = show;
+    }
+
+    public Boolean getBuildIn() {
+        return buildIn;
+    }
+
+    public void setBuildIn(Boolean buildIn) {
+        this.buildIn = buildIn;
     }
 }

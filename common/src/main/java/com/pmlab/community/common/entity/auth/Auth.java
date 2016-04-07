@@ -1,5 +1,7 @@
 package com.pmlab.community.common.entity.auth;
 
+import org.springframework.util.CollectionUtils;
+
 import java.util.HashSet;
 import java.util.Set;
 
@@ -7,17 +9,20 @@ import java.util.Set;
  * 用户权限 bean
  */
 public class Auth {
-    private Long Id;
+    private Long id;
     private Long userId = 0L;
-    private Set<Long> roleIds;
-    private Set<String> permissions;
+    private Set<Role> roles;
+    private Set<Permission> permissions;
+
+    private Set<String> roleStrings;
+    private Set<String> permissionStrings;
 
     public Long getId() {
-        return Id;
+        return id;
     }
 
     public void setId(Long id) {
-        Id = id;
+        this.id = id;
     }
 
     public Long getUserId() {
@@ -28,22 +33,43 @@ public class Auth {
         this.userId = userId;
     }
 
-    public Set<Long> getRoleIds() {
-        if (roleIds == null) {
-            roleIds = new HashSet<>();
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(Set<Role> roles) {
+        if(roleStrings == null) {
+            roleStrings = new HashSet<String>();
         }
-        return roleIds;
+        if(!CollectionUtils.isEmpty(roles)){
+            for(Role role : roles){
+                roleStrings.add(role.getRole());
+            }
+        }
+        this.roles = roles;
     }
 
-    public void setRoleIds(Set<Long> roleIds) {
-        this.roleIds = roleIds;
-    }
-
-    public Set<String> getPermissions() {
+    public Set<Permission> getPermissions() {
         return permissions;
     }
 
-    public void setPermissions(Set<String> permissions) {
+    public void setPermissions(Set<Permission> permissions) {
+        if(permissionStrings == null){
+            permissionStrings = new HashSet<String>();
+        }
+        if(!CollectionUtils.isEmpty(permissions)){
+            for(Permission permission : permissions){
+                permissionStrings.add(permission.getName());
+            }
+        }
         this.permissions = permissions;
+    }
+
+    public Set<String> getPermissionStrings() {
+        return permissionStrings;
+    }
+
+    public Set<String> getRoleStrings() {
+        return roleStrings;
     }
 }

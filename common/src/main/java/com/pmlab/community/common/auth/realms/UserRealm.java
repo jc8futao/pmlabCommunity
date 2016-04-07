@@ -1,5 +1,6 @@
 package com.pmlab.community.common.auth.realms;
 
+import com.pmlab.community.common.entity.auth.Auth;
 import com.pmlab.community.common.entity.user.User;
 import com.pmlab.community.common.service.BaseAuthService;
 import com.pmlab.community.common.service.BaseUserService;
@@ -31,8 +32,9 @@ public class UserRealm extends AuthorizingRealm {
         User user = baseUserService.findByUsername(username);
 
         SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
-        authorizationInfo.setRoles(baseAuthService.findStringRoles(user));
-        authorizationInfo.setStringPermissions(baseAuthService.findStringPermissions(user));
+        Auth m = baseAuthService.getAuthOfUser(user);
+        authorizationInfo.setRoles(m.getRoleStrings());
+        authorizationInfo.setStringPermissions(m.getPermissionStrings());
         return authorizationInfo;
     }
 

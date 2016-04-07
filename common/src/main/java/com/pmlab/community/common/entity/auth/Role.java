@@ -14,17 +14,18 @@ public class Role implements Serializable {
     private static final long serialVersionUID = -1430246236605498441L;
     private Long id; //编号
     private String role; //角色标识 程序中判断使用,如"admin"
+    private String name;    //角色显示标识
     private String description; //角色描述,UI界面显示使用
-    private List<Long> permissionIds; //拥有的权限
-    private Boolean available = Boolean.FALSE; //是否可用,如果不可用将不会添加给用户
+    private Boolean buildIn = Boolean.FALSE;
+    private Boolean show = Boolean.FALSE; //是否可用,如果不可用将不会添加给用户
 
     public Role() {
     }
 
-    public Role(String role, String description, Boolean available) {
+    public Role(String role, String description, Boolean show) {
         this.role = role;
         this.description = description;
-        this.available = available;
+        this.show = show;
     }
 
     public Long getId() {
@@ -51,48 +52,28 @@ public class Role implements Serializable {
         this.description = description;
     }
 
-    public List<Long> getPermissionIds() {
-        if(permissionIds == null) {
-            permissionIds = new ArrayList<Long>();
-        }
-        return permissionIds;
+    public Boolean getShow() {
+        return show;
     }
 
-    public void setPermissionIds(List<Long> permissionIds) {
-        this.permissionIds = permissionIds;
+    public void setShow(Boolean show) {
+        this.show = show;
     }
 
-    public String getPermissionIdsStr() {
-        if(CollectionUtils.isEmpty(permissionIds)) {
-            return "";
-        }
-        StringBuilder s = new StringBuilder();
-        for(Long permissionId : permissionIds) {
-            s.append(permissionId);
-            s.append(",");
-        }
-        return s.toString();
+    public String getName() {
+        return name;
     }
 
-    public void setPermissionIdsStr(String permissionIds) {
-        if(StringUtils.isEmpty(permissionIds)) {
-            return;
-        }
-        String[] permissionIdStrs = permissionIds.split(",");
-        for(String permissionId : permissionIdStrs) {
-            if(StringUtils.isEmpty(permissionId)) {
-                continue;
-            }
-            getPermissionIds().add(Long.valueOf(permissionId));
-        }
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public Boolean getAvailable() {
-        return available;
+    public Boolean getBuildIn() {
+        return buildIn;
     }
 
-    public void setAvailable(Boolean available) {
-        this.available = available;
+    public void setBuildIn(Boolean buildIn) {
+        this.buildIn = buildIn;
     }
 
     @Override
@@ -117,9 +98,10 @@ public class Role implements Serializable {
         return "Role{" +
                 "id=" + id +
                 ", role='" + role + '\'' +
+                ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
-                ", permissionIds=" + permissionIds +
-                ", available=" + available +
+                ", buildIn=" + buildIn +
+                ", show=" + show +
                 '}';
     }
 }

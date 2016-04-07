@@ -1,40 +1,57 @@
 package com.pmlab.community.common.service;
 
+import com.pmlab.community.common.entity.auth.Permission;
 import com.pmlab.community.common.entity.auth.Role;
 import com.pmlab.community.common.entity.auth.Auth;
+import com.pmlab.community.common.entity.auth.UserRoleRelation;
 import com.pmlab.community.common.entity.user.User;
+import com.pmlab.community.common.repository.RolePermissionRelationMapper;
+import com.pmlab.community.common.repository.UserRoleRelationMapper;
 import org.springframework.stereotype.Service;
 
+import javax.inject.Inject;
+import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
- * Created by tfu on 2016/4/4.
+ * authService
  */
 @Service
 public class BaseAuthService {
-    public void addUserAuth(Auth m){
-        //TODO
+    @Inject
+    private UserRoleRelationMapper userRoleRelationMapper;
+
+//    @Inject
+//    private RolePermissionRelationMapper rolePermissionRelation;
+
+    public void save(Auth m){
+        //
+        Long userId = m.getUserId();
+        userRoleRelationMapper.deleteRelationByUserId(userId);
+
+        Set<Role> roles = m.getRoles();
+        for(Role role : roles){
+            userRoleRelationMapper.save(new UserRoleRelation(m.getUserId(), role.getId()));
+        }
+
+        //permission 暂时不实现
     }
 
-    public void updateUserAuth(Auth m){
-        //TODO
+    public void delete(Auth m){
+        Long userId = m.getUserId();
+        userRoleRelationMapper.deleteRelationByUserId(userId);
     }
 
-    public void deleteUserAuth(Auth m){
-        //TODO
-    }
+    public Auth getAuthOfUser(User user){
+        Long userId = user.getId();
+        Set<Role> userRoles = userRoleRelationMapper.getRolesOfUser(userId);
 
-    public Set<Role> findRoles(User user){
-        //TODO
-        return null;
-    }
+        Auth m = new Auth();
+        m.setUserId(userId);
+        m.setRoles(userRoles);
 
-    public Set<String> findStringRoles(User user){
-        //TODO
-        return null;
-    }
-
-    public Set<String> findStringPermissions(User user){
-        return null;
+        //permission 部分暂不实现
+        return m;
     }
 }

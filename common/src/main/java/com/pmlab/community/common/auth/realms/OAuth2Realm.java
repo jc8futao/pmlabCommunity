@@ -1,5 +1,6 @@
 package com.pmlab.community.common.auth.realms;
 
+import com.pmlab.community.common.entity.auth.Auth;
 import com.pmlab.community.common.entity.auth.microChat.AccessToken;
 import com.pmlab.community.common.entity.auth.microChat.OAuth2Token;
 import com.pmlab.community.common.entity.user.User;
@@ -46,8 +47,9 @@ public class OAuth2Realm extends AuthorizingRealm {
 
         if(user == null){
             SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();
-            authorizationInfo.setRoles(baseAuthService.findStringRoles(user));
-            authorizationInfo.setStringPermissions(baseAuthService.findStringPermissions(user));
+            Auth m = baseAuthService.getAuthOfUser(user);
+            authorizationInfo.setRoles(m.getRoleStrings());
+            authorizationInfo.setStringPermissions(m.getPermissionStrings());
             return authorizationInfo;
         }else {
             SimpleAuthorizationInfo authorizationInfo = new SimpleAuthorizationInfo();

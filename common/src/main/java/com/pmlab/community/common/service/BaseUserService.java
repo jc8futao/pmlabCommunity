@@ -2,6 +2,7 @@ package com.pmlab.community.common.service;
 
 import com.pmlab.community.common.entity.user.User;
 import com.pmlab.community.common.repository.BaseUserMapper;
+import com.pmlab.community.common.repository.UserRoleRelationMapper;
 import org.springframework.stereotype.Service;
 
 import javax.inject.Inject;
@@ -14,21 +15,27 @@ public class BaseUserService {
     @Inject
     private BaseUserMapper baseUserMapper;
 
-    public User createUser(User user){
-        return null;
+    @Inject
+    private UserRoleRelationMapper userRoleRelationMapper;
+
+    @Inject
+    private PasswordHelper passwordHelper;
+
+    public User save(User user, Boolean ifChangePassword){
+        if(ifChangePassword){
+            passwordHelper.encryptPassword(user);
+        }
+        if (user.getId() != null && user.getId() > 0){
+            baseUserMapper.updateUser(user);
+        }else{
+            baseUserMapper.createUser(user);
+        }
+        return user;
     }
 
-    public User updateUser(User user){
-        return null;
-    }
-
-    public User bindUser(User user, String openId){
-        return null;
-    }
-
-    public User changePassword(User user, String newPassword){
-        //TODO
-        return null;
+    public void delete(User user){
+        baseUserMapper.deleteUser(user.getId());
+        userRoleRelationMapper.deleteRelationByUserId(user.getId());
     }
 
     public User findByUsername(String username) {
@@ -38,7 +45,6 @@ public class BaseUserService {
     public User findByEmail(String email) {
         return null;
     }
-
 
     public User findByMobilePhoneNumber(String mobilePhoneNumber) {
         //TODO
