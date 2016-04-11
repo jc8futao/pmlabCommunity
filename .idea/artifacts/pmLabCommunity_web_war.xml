@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="war" name="pmLabCommunity-web:war">
-    <output-path>$PROJECT_DIR$/web/target</output-path>
-    <root id="archive" name="pmlabCommunity.war">
-      <element id="artifact" artifact-name="pmLabCommunity-web:war exploded" />
-    </root>
-  </artifact>
-</component>
