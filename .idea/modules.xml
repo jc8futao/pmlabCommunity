@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/platform/PMLabCommunity-platform.iml" filepath="$PROJECT_DIR$/platform/PMLabCommunity-platform.iml" />
+      <module fileurl="file://$PROJECT_DIR$/console/pmLabCommunity-console.iml" filepath="$PROJECT_DIR$/console/pmLabCommunity-console.iml" />
+      <module fileurl="file://$PROJECT_DIR$/officialAccount/pmLabCommunity-officialAccount.iml" filepath="$PROJECT_DIR$/officialAccount/pmLabCommunity-officialAccount.iml" />
+      <module fileurl="file://$PROJECT_DIR$/web/pmLabCommunity-web.iml" filepath="$PROJECT_DIR$/web/pmLabCommunity-web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pmlabCommunity.iml" filepath="$PROJECT_DIR$/pmlabCommunity.iml" />
+      <module fileurl="file://$PROJECT_DIR$/common/pmlabCommunity-common.iml" filepath="$PROJECT_DIR$/common/pmlabCommunity-common.iml" />
+    </modules>
+  </component>
+</project>

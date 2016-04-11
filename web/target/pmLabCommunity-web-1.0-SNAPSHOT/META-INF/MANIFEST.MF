@@ -1,0 +1,8 @@
+Manifest-Version: 1.0
+Implementation-Title: PMLabCommunity :: Web
+Implementation-Version: 1.0-SNAPSHOT
+Built-By: thinkpad
+Implementation-Vendor-Id: com.com.pmlab.community.web
+Created-By: IntelliJ IDEA
+Build-Jdk: 1.7.0_65
+
