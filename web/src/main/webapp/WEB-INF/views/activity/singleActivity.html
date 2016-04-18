@@ -1,0 +1,68 @@
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+    <h4 class="modal-title" style="text-align: center">查看活动</h4>
+</div>
+<div class="modal-body">
+    <div class="scroller"  data-always-visible="1" data-rail-visible1="1">
+        <form class="form-horizontal" >
+        <div class="form-body">
+                <div class="form-group">
+                    <label class="col-md-3 control-label">活动标题</label>
+                    <div class="col-md-9">
+                        <span style="height:35px;line-height: 35px;display: inline-block">${activity.activityName}</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label">活动时间</label>
+                    <div class="col-md-9">
+                        <span style="height:35px;line-height: 35px;display: inline-block">${activity.activityDate?string("yyyy-MM-dd")}</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label">报名截止时间</label>
+                    <div class="col-md-9">
+                        <span style="height:35px;line-height: 35px;display: inline-block">${activity.enrollEndtime?string("yyyy-MM-dd")}</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label">活动地点</label>
+                    <div class="col-md-9">
+                        <span style="height:35px;line-height: 35px;display: inline-block">${activity.activityLocation}</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label">最大参与人数</label>
+                    <div class="col-md-9">
+                        <span style="height:35px;line-height: 35px;display: inline-block">${activity.activityMaxnum}</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label">活动说明</label>
+                    <div class="col-md-9">
+                       <span style="height:35px;line-height: 35px;display: inline-block"> ${activity.activityInstruction}</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label">活动宣传图片</label>
+                    <div class="col-md-9">
+                        <#if activity.activityPic??>
+                            <#if activity.activityPic?contains("http")>
+                                <img src="${activity.activityPic}" style="height: 64px;"/>
+                            </#if>
+                        </#if>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label">活动详情链接</label>
+                    <div class="col-md-9">
+                        <span style="height:35px;line-height: 35px;display: inline-block">${activity.activityLink}</span>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="modal-footer">
+    <button type="button" data-dismiss="modal" class="btn default">关闭</button>
+</div>

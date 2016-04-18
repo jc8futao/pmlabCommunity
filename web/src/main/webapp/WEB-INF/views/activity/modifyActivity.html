@@ -1,0 +1,123 @@
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"></button>
+    <h4 class="modal-title" style="text-align: center">修改活动</h4>
+</div>
+<div class="modal-body">
+    <div class="scroller"  data-always-visible="1" data-rail-visible1="1">
+
+        <form class="form-horizontal" action="${staticDomain}activity/modify" method="post" role="form">
+            <input type="hidden" name="id" value="${activity.id}"/>
+            <div class="form-body">
+                <div class="form-group">
+                    <label class="col-md-3 control-label">活动标题</label>
+                    <div class="col-md-9">
+                        <input type="text" name="activityName" class="form-control input-inline input-medium" placeholder="请输入活动标题" value="${activity.activityName}">
+                        <span class="help-block">支持汉字、数字、字母（30字内）</span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label">活动时间</label>
+                    <div class="col-md-9">
+                        <input type="text" name="activityDate" class="form-control input-inline input-medium date-picker" placeholder="活动时间" value='${activity.activityDate?string("yyyy-MM-dd")}'>
+                        <span class="help-inline"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label">报名截止时间</label>
+                    <div class="col-md-9">
+                        <input type="text" name="enrollEndtime" class="form-control input-inline input-medium date-picker" placeholder="报名截止时间" value='${activity.enrollEndtime?string("yyyy-MM-dd")}'>
+                        <span class="help-inline"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label">活动地点</label>
+                    <div class="col-md-9">
+                        <input type="text" name="activityLocation" class="form-control input-inline input-medium" placeholder="活动地点" value="${activity.activityLocation}">
+                        <span class="help-inline"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label">最大参与人数</label>
+                    <div class="col-md-9">
+                        <input type="text" name="activityMaxnum" class="form-control input-inline input-medium" placeholder="最大参与人数" value="${activity.activityMaxnum}">
+                        <span class="help-inline"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label">活动说明</label>
+                    <div class="col-md-9">
+                        <textarea class="form-control" name="activityInstruction" rows="10" >${activity.activityInstruction}</textarea>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label">活动宣传图片</label>
+                    <div class="col-md-9">
+                        <div class="input-icon right">
+                            <div class="input-icon right">
+                                <#if activity.activityPic?if_exists>
+                                    <div class="fileinput-preview fileinput-exists thumbnail editactivity" style="max-width: 200px; max-height: 150px; line-height: 10px;">
+                                        <img src="${activity.activityPic}" alt="" style="max-height: 140px;">
+                                    </div>
+                                <#else>
+                                    <div class="fileinput-new thumbnail" style="width: 100px; height: 100px;">
+                                        <img src="http://www.placehold.it/100x100/EFEFEF/AAAAAA&amp;text=no+image" alt="">
+                                    </div>
+                                    <div class="fileinput-preview fileinput-exists thumbnail editactivity" style="max-width: 200px; max-height: 150px; line-height: 10px;">
+                                        <img src="" alt="" style="max-height: 140px;">
+                                    </div>
+                                </#if>
+                                <input id="file_upload1" name="pic" type="file" multiple="false">
+                                <input name="activityPic" id="activitypic" type="hidden" value="${activity.activityPic}"/>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-md-3 control-label">活动详情链接</label>
+                    <div class="col-md-9">
+                        <input type="text" name="activityLink" class="form-control input-inline input-medium" placeholder="活动详情链接" value="${activity.activityLink}">
+                        <span class="help-inline"></span>
+                    </div>
+                </div>
+                <div class="form-actions">
+                    <div class="row">
+                        <div class="col-md-offset-3 col-md-9">
+                            <button type="submit" class="btn green">提交</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>
+<div class="modal-footer">
+</div>
+<script type="text/javascript">
+    $('.date-picker').datepicker({
+        rtl: Metronic.isRTL(),
+        orientation: "left",
+        autoclose: true,
+        format:"yyyy-mm-dd",
+        language:"zh-CN"
+    });
+    $('#file_upload1').uploadify({
+        'swf': domain+'statics/js/global/plugins/uploadify/uploadify.swf',    //指定上传控件的主体文件
+        'uploader': domain+'activity/upload',    //指定服务器端上传处理文件
+        'fileObjName'   : 'file',
+        'preventCaching':true,
+        'fileExt' : '*.jpeg,*.jpg,*.png',
+        'onUploadSuccess':function (file,data,response){
+            var file = JSON.parse(data);
+            $(".fileinput-preview").find("img").attr("src", file.data);
+            $(".fileinput-preview").show();
+            $(".fileinput-new").hide();
+            $("#activitypic").val(file.data);
+        }
+    });
+
+    if($(".editactivity").find("img").attr("src")==""){
+        $(".editactivity").hide();
+    }
+
+</script>
