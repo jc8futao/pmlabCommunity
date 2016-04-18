@@ -35,6 +35,8 @@
         <org.slf4j-version>1.7.5</org.slf4j-version>
         <cxf.version>2.7.8</cxf.version>
         <commons-collections.version>3.2.1</commons-collections.version>
+        <commons-fileupload.version>1.2.2</commons-fileupload.version>
+        <commons-io.version>2.1</commons-io.version>
         <jackson.version>1.8.6</jackson.version>
         <mybatis.version>3.2.8</mybatis.version>
         <freemarker.version>2.3.20</freemarker.version>
@@ -123,6 +125,21 @@
             <version>${commons-collections.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>commons-fileupload</groupId>
+            <artifactId>commons-fileupload</artifactId>
+            <version>${commons-fileupload.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>${commons-io.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>joda-time</groupId>
+            <artifactId>joda-time</artifactId>
+            <version>2.9.2</version>
+        </dependency>
         <!-- Logging -->
         <dependency>
             <groupId>org.slf4j</groupId>

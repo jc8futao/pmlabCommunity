@@ -10,10 +10,9 @@ var Metronic = function() {
     var isIE10 = false;
 
     var resizeHandlers = [];
+    var assetsPath = domain+'statics/';
 
-    var assetsPath = '../../assets/';
-
-    var globalImgPath = 'global/img/';
+    var globalImgPath = 'img/';
 
     var globalPluginsPath = 'global/plugins/';
 
