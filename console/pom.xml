@@ -18,4 +18,11 @@
     <name>PMLabCommunity :: Console</name>
     <url>http://www.pmlab.cn/console/</url>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.pmlab.community</groupId>
+            <artifactId>pmlabCommunity-common</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 </project>

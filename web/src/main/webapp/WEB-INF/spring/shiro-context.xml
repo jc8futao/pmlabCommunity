@@ -151,7 +151,7 @@
         </property>
         <property name="filterChainDefinitions">
             <value>
-                / = anon
+                / = userAuthc
                 /message = anon
                 /oauth2Failure = anon
                 /oauth2-login = oauth2Authc

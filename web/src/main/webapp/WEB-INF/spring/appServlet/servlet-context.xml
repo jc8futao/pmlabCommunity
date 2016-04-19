@@ -16,6 +16,7 @@
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
 	<resources mapping="/statics/**" location="/statics/" />
+	<resources mapping="/upload/**" location="/upload/" />
 
 	<beans:bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping">
 		<beans:property name="useSuffixPatternMatch" value="false" />
@@ -24,7 +25,12 @@
 		<beans:property name="detectHandlerMethodsInAncestorContexts" value="true"></beans:property>
 	</beans:bean>
 
-
+	<!-- 上传拦截，如最大上传值及最小上传值 -->
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<!-- one of the properties available; the maximum file size in bytes -->
+		<beans:property name="maxUploadSize" value="10000000" /><!-- 10M -->
+		<beans:property name="defaultEncoding" value="UTF-8" />
+	</beans:bean>
 	<!-- Resolves views selected for rendering by @Controllers to .jsp resources in the /WEB-INF/views directory -->
 	<!--
 	<beans:bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
@@ -57,15 +63,13 @@
 	</beans:bean>
 
 	<beans:bean id="freemarkerConfig"
-		  class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+		  class="com.pmlab.community.common.auth.ShiroTagFreeMarkerConfigurer">
 		<beans:property name="templateLoaderPath" value="/WEB-INF/views/" />
-		<!--
         <beans:property name="freemarkerVariables">
         <beans:map>
-            <beans:entry key="staticDomain" value="${staticDomain}" />
+            <beans:entry key="staticDomain" value="http://127.0.0.1:8080/" />
         </beans:map>
 		</beans:property>
-        -->
 		<beans:property name="freemarkerSettings">
 			<beans:props>
 				<beans:prop key="locale">zh_CN</beans:prop>

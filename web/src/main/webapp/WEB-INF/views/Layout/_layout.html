@@ -1,6 +1,6 @@
 <! -- header start -->
 <#include "Layout/_header.html">
-    ${html_css}
+
 </head>
 <!-- END HEAD -->
 <!-- header end-->
@@ -100,6 +100,7 @@
         <div class="page-top">
             <!-- BEGIN HEADER SEARCH BOX -->
             <!-- DOC: Apply "search-form-expanded" right after the "search-form" class to have half expanded search box -->
+            <!--
             <form class="search-form search-form-expanded" action="####" method="POST">
                 <div class="input-group">
                     <input type="text" class="form-control" placeholder="搜索..." name="query">
@@ -108,6 +109,7 @@
 					</span>
                 </div>
             </form>
+            -->
             <!-- END HEADER SEARCH BOX -->
             <!-- BEGIN TOP NAVIGATION MENU -->
             <div class="top-menu">
@@ -419,9 +421,9 @@
                     <!-- DOC: Apply "dropdown-dark" class after below "dropdown-extended" to change the dropdown styte -->
                     <li class="dropdown dropdown-user">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                            <img alt="" class="img-circle" src="statics/css/global/admin/img/avatar.png"/>
+                            <img alt="" class="img-circle" src="${staticDomain}statics/css/global/admin/img/avatar.png"/>
 						<span class="username username-hide-on-mobile">
-						PMLab admin </span>
+						<@shiro.principal /> </span>
                             <i class="fa fa-angle-down"></i>
                         </a>
                         <ul class="dropdown-menu dropdown-menu-default">

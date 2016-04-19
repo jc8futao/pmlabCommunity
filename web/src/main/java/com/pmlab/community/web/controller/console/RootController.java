@@ -23,7 +23,7 @@ import javax.servlet.http.HttpServletRequest;
 public class RootController {
     @RequestMapping("/")
     public String getWelcome(){
-        return "index";
+        return "dashbord";
     }
 
     @RequestMapping("/login")
