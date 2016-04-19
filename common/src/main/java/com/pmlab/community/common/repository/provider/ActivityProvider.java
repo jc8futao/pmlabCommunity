@@ -11,7 +11,7 @@ import static org.apache.ibatis.jdbc.SqlBuilder.*;
 public class ActivityProvider {
 
 
-    private static final String TABLE_NAME = "activity";
+    private static final String TABLE_NAME = "pmlab_activity";
 
 
     /**

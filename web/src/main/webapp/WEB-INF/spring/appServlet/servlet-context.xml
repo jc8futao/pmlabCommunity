@@ -63,7 +63,7 @@
 	</beans:bean>
 
 	<beans:bean id="freemarkerConfig"
-		  class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+		  class="com.pmlab.community.common.auth.ShiroTagFreeMarkerConfigurer">
 		<beans:property name="templateLoaderPath" value="/WEB-INF/views/" />
         <beans:property name="freemarkerVariables">
         <beans:map>

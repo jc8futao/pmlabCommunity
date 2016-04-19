@@ -26,7 +26,8 @@ CREATE TABLE `pmlab_enroll` (
 -- ----------------------------
 -- Table structure for pmlab_event
 -- ----------------------------
-DROP TABLE IF EXISTS `pmlab_event`;
+-- DROP TABLE IF EXISTS `pmlab_event`;
+/**
 CREATE TABLE `pmlab_event` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `creatorId` bigint(20) NOT NULL,
@@ -45,6 +46,30 @@ CREATE TABLE `pmlab_event` (
   `finishDate` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+**/
+
+DROP TABLE IF EXISTS `pmlab_activity`;
+CREATE TABLE `pmlab_activity` (
+`id`  bigint(20) NOT NULL AUTO_INCREMENT ,
+`activityName`  varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NOT NULL COMMENT '活动名称（50个字以内）' ,
+`activityDate`  date NOT NULL COMMENT '活动时间' ,
+`enrollEndtime`  date NOT NULL COMMENT '报名结束时间' ,
+`activityLocation`  varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '活动地点' ,
+`activityMaxnum`  int(11) NULL DEFAULT NULL COMMENT '最大参与人数' ,
+`activityInstruction`  text CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL COMMENT '活动说明' ,
+`activityPic`  varchar(200) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '活动宣传图片' ,
+`activityLink`  varchar(300) CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci NULL DEFAULT NULL COMMENT '活动详情链接' ,
+`activityState`  tinyint(4) NOT NULL COMMENT '状态（0：报名中 1：报名待确认 2：进行中 3：已结束）' ,
+`createTime`  datetime NOT NULL COMMENT '创建时间' ,
+`updateTime`  datetime NOT NULL ,
+`createUser`  bigint(20) NOT NULL ,
+`updateUser`  bigint(20) NOT NULL ,
+PRIMARY KEY (`id`)
+)
+ENGINE=InnoDB
+DEFAULT CHARACTER SET=utf8mb4 COLLATE=utf8mb4_general_ci
+ROW_FORMAT=COMPACT
+;
 
 -- ----------------------------
 -- Records of pmlab_event
