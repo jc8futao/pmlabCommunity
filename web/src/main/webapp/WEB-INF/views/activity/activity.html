@@ -2,11 +2,14 @@
     <script type="text/javascript" src="${staticDomain}statics/js/global/plugins/datatables/media/js/jquery.dataTables.min.js"></script>
     <script type="text/javascript" src="${staticDomain}statics/js/global/plugins/datatables/plugins/bootstrap/dataTables.bootstrap.js"></script>
     <script type="text/javascript" src="${staticDomain}statics/js/global/datatable.js"></script>
-    <script type="text/javascript" src="${staticDomain}statics/js/activity/activity.js"></script>
     <script type="text/javascript" src="${staticDomain}statics/js/global/util.js"></script>
     <script type="text/javascript" src="${staticDomain}statics/js/global/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script>
     <script type="text/javascript" src="${staticDomain}statics/js/global/plugins/bootstrap-datepicker/js/locales/bootstrap-datepicker.zh-CN.js"></script>
     <script type="text/javascript" src="${staticDomain}statics/js/global/plugins/uploadify/jquery.uploadify.min.js"></script>
+    <script type="text/javascript" src="${staticDomain}statics/js/global/plugins/jquery-validation/js/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="${staticDomain}statics/js/global/plugins/jquery-validation/js/additional-methods.min.js"></script>
+    <script type="text/javascript" src="${staticDomain}statics/js/activity/activity.js"></script>
+
     <script type="text/javascript">
         jQuery(document).ready(function(){
              activity.init(domain);
@@ -48,26 +51,27 @@
                         </div>
                         <div class="modal-body">
                             <div class="scroller" style="height:300px" data-always-visible="1" data-rail-visible1="1">
-                                <form class="form-horizontal" role="form" action="${staticDomain}activity/add" method="post">
+                                <form class="form-horizontal" id="addActivityForm" role="form" action="${staticDomain}activity/add" method="post">
                                     <div class="form-body">
                                         <div class="form-group">
                                             <label class="col-md-3 control-label">活动标题</label>
-                                            <div class="col-md-9">
+                                            <div class="col-md-5">
                                                 <input type="text" name="activityName" class="form-control input-inline input-medium" placeholder="请输入活动标题">
 												<span class="help-block">支持汉字、数字、字母（30字内）</span>
                                             </div>
+                                            <div class="col-md-4"></div>
                                         </div>
                                         <div class="form-group">
                                             <label class="col-md-3 control-label">活动时间</label>
                                             <div class="col-md-9">
-                                                <input type="text" name="activityDate" class="form-control input-inline input-medium date-picker" placeholder="活动时间">
+                                                <input type="text" name="activityDate" readonly="readonly" class="form-control input-inline input-medium date-picker" placeholder="活动时间">
 												<span class="help-inline"></span>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <label class="col-md-3 control-label">报名截止时间</label>
                                             <div class="col-md-9">
-                                                <input type="text" name="enrollEndtime" class="form-control input-inline input-medium date-picker" placeholder="报名截止时间">
+                                                <input type="text" name="enrollEndtime" readonly="readonly" class="form-control input-inline input-medium date-picker" placeholder="报名截止时间">
                                                 <span class="help-inline"></span>
                                             </div>
                                         </div>

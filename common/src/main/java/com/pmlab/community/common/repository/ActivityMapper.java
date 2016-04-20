@@ -21,7 +21,7 @@ public interface ActivityMapper {
      * @param activity
      * @return
      */
-    @Insert("INSERT INTO activity(activityName,activityDate,enrollEndtime,activityLocation,activityMaxnum,activityInstruction,activityPic,activityLink,activityState,createTime,updateTime,createUser,updateUser) " +
+    @Insert("INSERT INTO pmlab_activity(activityName,activityDate,enrollEndtime,activityLocation,activityMaxnum,activityInstruction,activityPic,activityLink,activityState,createTime,updateTime,createUser,updateUser) " +
             " VALUES(#{activityName}, #{activityDate}, #{enrollEndtime}, #{activityLocation}, #{activityMaxnum}, #{activityInstruction}, #{activityPic}, #{activityLink}, #{activityState}, now(), now(), #{createUser}, #{updateUser} )")
     @Options(useGeneratedKeys = true, keyProperty = "id")
     public int insertActivity(Activity activity);
@@ -43,10 +43,10 @@ public interface ActivityMapper {
             "activityPic\n," +
             "activityLink\n," +
             "activityState\n" +
-             " from activity where id = #{id}")
+             " from pmlab_activity where id = #{id}")
     public Activity getSingleActivity(long id);
 
 
-    @Update("update activity set activityName=#{activityName},activityDate=#{activityDate},enrollEndtime=#{enrollEndtime},activityLocation=#{activityLocation},activityMaxnum=#{activityMaxnum},activityInstruction=#{activityInstruction},activityPic=#{activityPic},activityLink=#{activityLink},updateTime=now() where id = #{id}")
+    @Update("update pmlab_activity set activityName=#{activityName},activityDate=#{activityDate},enrollEndtime=#{enrollEndtime},activityLocation=#{activityLocation},activityMaxnum=#{activityMaxnum},activityInstruction=#{activityInstruction},activityPic=#{activityPic},activityLink=#{activityLink},updateTime=now() where id = #{id}")
     public int modifyActivity(Activity activity);
 }
