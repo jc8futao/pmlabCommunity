@@ -4,6 +4,10 @@ var activity = function () {
 
     var handleRecords = function () {
 
+
+
+
+
         var activityState = ["报名中","报名待确认","进行中","已结束"];
         var grid = new Datatable();
 
@@ -84,6 +88,12 @@ var activity = function () {
         });
 
 
+        $("body").on('click','#queryActivity',function(){
+
+            var searchName=$("#searchName").val();
+            var state=$("#state").val();
+            grid.getDataTable().ajax.url(domain+"activity/list?searchName="+searchName+"&state="+state).load();
+        });
     }
 
     var datepicker=function () {
@@ -104,8 +114,8 @@ var activity = function () {
         return this.optional(element) || (tel.test(value));
     }, $.validator.format("只能输入汉字、数字或字母"));
 
-    var validation = function(){
-        var form1 = $('#addActivityForm');
+    var validation = function(id){
+        var form1 = $('#'+id);
         var error1 = $('.alert-danger', form1);
         var success1 = $('.alert-success', form1);
 
@@ -129,42 +139,49 @@ var activity = function () {
                     required: true,
                     activityName:true
                 },
-                email: {
-                    required: true,
-                    email: true
+                activityDate: {
+                    required: true
                 },
-                url: {
-                    required: true,
-                    url: true
+                enrollEndtime: {
+                    required: true
                 },
-                number: {
+                activityMaxnum: {
                     required: true,
                     number: true
                 },
-                digits: {
-                    required: true,
-                    digits: true
-                },
-                creditcard: {
-                    required: true,
-                    creditcard: true
-                },
-                occupation: {
-                    minlength: 5,
-                },
-                select: {
+                activityLocation: {
                     required: true
                 },
-                select_multi: {
-                    required: true,
-                    minlength: 1,
-                    maxlength: 3
+                activityInstruction:{
+                    required: true
+                },
+                activityPic:{
+                    required: true
                 }
             },
             messages:{
                 activityName:{
                     maxlength: '不能超过30个字符',
                     required: '活动标题必填'
+                },
+                activityDate: {
+                    required: '活动时间不能为空'
+                },
+                enrollEndtime: {
+                    required: '活动结束时间不能为空'
+                },
+                activityMaxnum: {
+                    required: '最大参与人数不能为空',
+                    number: '必须是数字'
+                },
+                activityLocation: {
+                    required: '活动地点不能为空'
+                },
+                activityInstruction:{
+                    required: '活动说明不能为空'
+                },
+                activityPic:{
+                    required: '活动图片不能为空'
                 }
             },
             invalidHandler: function (event, validator) { //display error alert on form submit
@@ -191,6 +208,7 @@ var activity = function () {
             submitHandler: function (form) {
                 success1.show();
                 error1.hide();
+                form.submit();
             }
         });
 
@@ -199,10 +217,13 @@ var activity = function () {
     return {
 
         //main function to initiate the module
-        init: function () {
+        init: function (id) {
             handleRecords();
             datepicker();
-            validation();
+            validation(id);
+        },
+        validation:function(id){
+            validation(id);
         }
 
     };

@@ -59,8 +59,8 @@ public class DashbordController {
      */
     @RequestMapping(value="/activity/list",method= RequestMethod.POST)
     public @ResponseBody
-    Pagenation<ActivityVO> activityListValue(@RequestParam(defaultValue="0") int start,@RequestParam(defaultValue="10") int length){
-        Pagenation<ActivityVO> activitys= activityService.getActivityList(start,length,null,(byte)-1);
+    Pagenation<ActivityVO> activityListValue(@RequestParam(defaultValue="0") int start,@RequestParam(defaultValue="10") int length,@RequestParam(defaultValue="") String searchName,@RequestParam(defaultValue="-1") byte state){
+        Pagenation<ActivityVO> activitys= activityService.getActivityList(start,length,searchName,state);
         return activitys;
     }
 
